@@ -18,9 +18,9 @@ function Navigation({ loggedIn }) {
     <div className='navigation'>
       <div className='navigation__switch'>
         <div className={`navigation__dark ${openMenu && 'navigation__dark_active'}`} onClick={handlerSwitchMenu} />
-        <div className={`navigation__menu-button ${openMenu && 'navigation__menu-button_active'}`} onClick={handlerSwitchMenu} />
+        <div className={`navigation__burger ${openMenu && 'navigation__burger_active'}`} onClick={handlerSwitchMenu} />
         <nav className={`navigation__links ${openMenu && 'navigation__links_active'}`}>
-          <NavLink className={({ isActive }) => `navigation__link navigation__link__type_main ${isActive ? 'navigation__link_active' : ''}`} to='/'
+          <NavLink className={({ isActive }) => `navigation__link navigation__link_type_main ${isActive ? 'navigation__link_active' : ''}`} to='/'
             onClick={handlerSwitchMenu}>Главная</NavLink>
           <NavLink className={({ isActive }) => `navigation__link ${isActive ? 'navigation__link_active' : ''}`} to='/movies/all-movies'
             onClick={handlerSwitchMenu}>Фильмы</NavLink>
