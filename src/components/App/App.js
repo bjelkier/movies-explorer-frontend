@@ -1,19 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Header from '../Header/Header.js';
-import './App.css';
-import CurrentUserContext from '../../contexts/CurrentUserContext';
+import Main from '../Main/Main.js';
 
 function App() {
-  const [currentUser, setCurrentUser] = useState({});
   const [loggedIn, setLoggedIn] = useState(false);
 
   return (
-    <CurrentUserContext.Provider value={currentUser}>
-      <div className='root'>
-        <Header loggedIn={loggedIn} />
-      </div>
-    </CurrentUserContext.Provider>
-
+    <div className='root'>
+      <Header loggedIn={loggedIn} />
+      <Main />
+    </div>
   )
 }
 
