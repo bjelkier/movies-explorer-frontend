@@ -10,6 +10,7 @@ import Movies from '../Movies/Movies.js';
 import Footer from '../Footer/Footer';
 import SavedMovies from '../SavedMovies/SavedMovies.js';
 import NotFound from '../NotFound/NotFound.js';
+import './App.css';
 
 function App() {
   const [currentUser, setCurrentUser] = useState({});
@@ -23,7 +24,7 @@ function App() {
           <Route path='/signup' element={<Register />} />
           <Route path='/signin' element={<Login />} />
           <Route path='/profile' element={<Profile />} />
-          <Route path='/movies/*' element={<Movies />} />
+          <Route path='/movies' element={<Movies />} />
           <Route path='/saved-movies' element={<SavedMovies />} />
           <Route path='*' element={<NotFound />} />
         </Routes>

@@ -19,6 +19,7 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  z-index: 11;
 }
 
 .navigation__profile {
@@ -36,6 +37,10 @@
   padding: 3px 3px 3px 11px;
 }
 
+.navigation__profile:hover {
+  opacity: .8;
+}
+
 .navigation__profile_background_gray {
   background-color: #202020;
 }
@@ -48,7 +53,7 @@
   background-size: cover;
   display: none;
   cursor: pointer;
-  z-index: 999;
+  z-index: 10;
 }
 
 .navigation__dark {
@@ -71,6 +76,7 @@
   background-image: url(../../images/close-menu.svg);
   width: 30px;
   height: 30px;
+  z-index: 15;
 }
 
 .navigation__link {
@@ -80,6 +86,11 @@
   font-weight: 400;
   line-height: 18px;
   margin-right: 16px;
+  z-index: 12;
+}
+
+.navigation__link:hover {
+  opacity: .8;
 }
 
 .navigation__link_type_main {
@@ -157,6 +168,7 @@
     justify-content: flex-start;
     align-items: center;
     transition: right .5s ease;
+    z-index: 14;
   }
 
   .navigation__links_active {

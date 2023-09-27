@@ -3,7 +3,7 @@ import pointer from '../../images/pointer.svg';
 
 function Portfolio() {
   return (
-    <section className='portfolio'>
+    <main className='portfolio'>
       <div className='portfolio__container'>
         <h2 className='portfolio__title'>Портфолио</h2>
         <a className='portfolio__links' href='https://github.com/bjelkier/how-to-learn'
@@ -22,7 +22,7 @@ function Portfolio() {
           <img className='portfolio__pointer' src={pointer} alt='стрелка'></img>
         </a>
       </div>
-    </section>
+    </main>
   )
 }
 

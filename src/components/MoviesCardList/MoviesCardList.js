@@ -17,7 +17,7 @@ function MoviesCardList() {
 
   return (
     <section className='cards'>
-      <div className='cards__container'>
+      <ul className='cards__container'>
         {cards.map(({ id, nameRU, duration, image }) => (
           <MoviesCard
             key={id}
@@ -28,7 +28,7 @@ function MoviesCardList() {
           />
         ))
         }
-      </div>
+      </ul>
       <button className='cards__button' onClick={more} >Ещё</button>
     </section>
   )

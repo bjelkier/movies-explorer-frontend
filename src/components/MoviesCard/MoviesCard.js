@@ -12,13 +12,13 @@ function MoviesCard({ cardImage, cardTitle, cardDuration, isSavedMovies }) {
 
   return (
     <article className='card'>
-      <div className='card__image' style={{ backgroundImage: `url(${cardImage})` }} />
+      <div className='card__cover' style={{ backgroundImage: `url(${cardImage})` }} />
       <div className='card__info'>
-        <p className='card__title'> {cardTitle} </p>
+        <h2 className='card__title'> {cardTitle} </h2>
         {isSavedMovies ? (
-          <button className='card__delete'></button>
+          <button className='card__delete' type='button'></button>
         ) : (
-          <button className={`card__like ${isLiked && 'card__like_active'}`} onClick={handleLike}></button>
+          <button className={`card__like ${isLiked && 'card__like_active'}`} onClick={handleLike} type='button'></button>
         )
         }
       </div>

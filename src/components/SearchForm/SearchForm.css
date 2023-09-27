@@ -32,6 +32,10 @@
   cursor: pointer;
 }
 
+.search__icon:hover {
+  opacity: 0.8;
+}
+
 .search__input {
   background-color: transparent;
   border: none;
@@ -43,6 +47,10 @@
   outline: none;
   flex-grow: 1;
   width: 100%;
+}
+
+.search__input:focus {
+  outline: 1px solid #4285F4;
 }
 
 .search__button {

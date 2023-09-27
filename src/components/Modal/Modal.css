@@ -16,6 +16,10 @@
   height: 38px;
 }
 
+.modal__logo:hover {
+  opacity: .8;
+}
+
 .modal__title {
   font-size: 24px;
   font-weight: 500;
@@ -44,18 +48,14 @@
   border-bottom: 1px solid #424242;
   padding-bottom: 10px;
   margin-bottom: 22px;
-  color: white;
+  color: #FFFFFF;
   font-size: 14px;
   font-weight: 400;
   line-height: normal;
 }
 
 .modal__input:focus {
-  border-bottom: 1px solid #4285F4;
-}
-
-.modal__input_type_password {
-  color: #FFFFFF;
+  outline: 1px solid #4285F4;
 }
 
 .modal__button {

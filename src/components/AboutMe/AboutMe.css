@@ -67,6 +67,7 @@
   font-weight: 500;
   line-height: normal;
   transition: opacity .3s ease;
+  align-self: baseline;
 }
 
 .about-me__github:hover {

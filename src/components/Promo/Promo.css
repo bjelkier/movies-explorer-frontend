@@ -61,6 +61,7 @@
     font-size: 31px;
     line-height: 39px;
     letter-spacing: -1.24px;
+    min-width: 300px;
   }
 
   .promo__image {

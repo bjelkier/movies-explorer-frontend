@@ -5,7 +5,7 @@ import React from 'react';
 function Register() {
 
   return (
-    <div className='register'>
+    <main className='register'>
       <Modal
         title='Добро пожаловать!'
         buttonText='Зарегистрироваться'
@@ -14,7 +14,7 @@ function Register() {
         linkTo='/signin'
         isRegister={true}
       />
-    </div>
+    </main>
   )
 };
 

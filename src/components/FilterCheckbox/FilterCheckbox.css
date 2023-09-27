@@ -29,6 +29,10 @@
   cursor: pointer;
 }
 
+.filter-checkbox__checkbox:hover {
+  opacity: .8;
+}
+
 .filter-checkbox__checkbox-hidden:checked+.filter-checkbox__checkbox {
   background-image: url('../../images/checkbox-on.svg');
 }

@@ -50,6 +50,10 @@
   max-width: 29px;
 }
 
+.portfolio__pointer:hover {
+  opacity: .8;
+}
+
 @media screen and (max-width:900px) {
   .portfolio__container {
     padding: 0 50px;

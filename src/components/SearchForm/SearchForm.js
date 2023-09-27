@@ -19,7 +19,7 @@ function SearchForm() {
         <form className='search__form'>
           <div className='search__block'>
             <img className='search__icon' src={search} alt='Иконка лупы' onClick={handleFocus} />
-            <input className='search__input' name='search' placeholder={placeholder} ref={searchRef}></input>
+            <input className='search__input' name='search' placeholder={placeholder} ref={searchRef} required ></input>
             <button className='search__button' type='submit'>Найти</button>
           </div>
           <FilterCheckbox />

@@ -1,5 +1,7 @@
 .footer {
   width: 100%;
+  grid-row-start: 4;
+  grid-row-end: 5;
 }
 
 .footer__container {

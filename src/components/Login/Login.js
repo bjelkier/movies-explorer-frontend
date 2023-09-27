@@ -5,7 +5,7 @@ import React from 'react';
 function Login() {
 
   return (
-    <div className='login'>
+    <main className='login'>
       <Modal
         title='Рады видеть!'
         buttonText='Войти'
@@ -13,7 +13,7 @@ function Login() {
         linkName='Регистрация'
         linkTo='/signup'
       />
-    </div>
+    </main>
   )
 };
 
