@@ -79,13 +79,13 @@
 }
 
 @media screen and (max-width:900px) {
-  .card__image {
+  .card__cover {
     height: 190px;
   }
 }
 
 @media screen and (max-width:700px) {
-  .card__image {
+  .card__cover {
     height: 168px;
   }
 }

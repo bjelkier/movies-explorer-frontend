@@ -3,5 +3,9 @@ body {
   font-family: Inter, Arial, sans-serif;
 }
 
+/* * {
+  outline: 1px solid red;
+} */
+
 @import url(./vendor/normalize.css);
 @import url(./vendor/fonts.css);

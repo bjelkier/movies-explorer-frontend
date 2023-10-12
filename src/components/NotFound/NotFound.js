@@ -6,12 +6,14 @@ function NotFound() {
   const navigate = useNavigate();
 
   return (
-    <main className='not-found'>
-      <div className='not-found_error'>
-        <h1 className='not-found__code'>404</h1>
-        <h2 className='not-found__message'>Страница не найдена</h2>
-      </div>
-      <button className='not-found__button' type='button' onClick={() => { navigate(-1) }}>Назад</button>
+    <main>
+      <section className='not-found'>
+        <article className='not-found__error'>
+          <h1 className='not-found__code'>404</h1>
+          <span className='not-found__message'>Страница не найдена</span>
+          <button className='not-found__button' type='button' onClick={() => { navigate(-1) }}>Назад</button>
+        </article>
+      </section>
     </main>
   )
 };

@@ -29,7 +29,7 @@ function MoviesCardList() {
         ))
         }
       </ul>
-      <button className='cards__button' onClick={more} >Ещё</button>
+      <button className='cards__button' onClick={more} type='button'>Ещё</button>
     </section>
   )
 }

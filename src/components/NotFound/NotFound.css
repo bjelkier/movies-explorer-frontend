@@ -1,9 +1,6 @@
 .not-found {
-  position: fixed;
   display: flex;
   flex-direction: column;
-  top: 0;
-  left: 0;
   width: 100%;
   height: 100%;
   align-items: center;
@@ -13,22 +10,22 @@
   color: #FFFFFF;
 }
 
-.not-found_error {
-  position: absolute;
+.not-found__error {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
 .not-found__code {
+  display: inline-block;
   font-size: 140px;
   font-weight: 400;
   line-height: normal;
-  margin: 0 0 5px 0;
-  margin-top: auto;
+  margin: 247px 0 5px 0;
 }
 
 .not-found__message {
+  display: inline-block;
   font-size: 16px;
   font-weight: 400;
   line-height: normal;
@@ -36,6 +33,7 @@
 }
 
 .not-found__button {
+  display: inline-block;
   color: #4285F4;
   width: 100%;
   background-color: transparent;
@@ -45,16 +43,24 @@
   font-weight: 400;
   line-height: normal;
   cursor: pointer;
-  margin: auto 0 70px;
+  margin: 184px 0 0;
+}
+
+@media screen and (max-width:768px) {
+  .not-found__code {
+    margin: 394px 0 5px 0;
+  }
 }
 
 @media screen and (max-width:500px) {
   .not-found__code {
     font-size: 80px;
+    margin: 330px 0 5px 0;
   }
 
   .not-found__message {
     font-size: 12px;
+    margin-top: 3px;
   }
 
   .not-found__button {

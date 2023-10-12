@@ -10,8 +10,8 @@ function Footer() {
         <div className='footer__underline'>
           <span className='footer__copyright'>© 2023</span>
           <ul className='footer__links'>
-            <a className='footer__link' href='https://practicum.yandex.ru/' target='_blank' rel="noreferrer">Яндекс.Практикум</a>
-            <a className='footer__link' href='https://github.com/bjelkier' target='_blank' rel="noreferrer">Github</a>
+            <li><a className='footer__link' href='https://practicum.yandex.ru/' target='_blank' rel="noreferrer">Яндекс.Практикум</a></li>
+            <li><a className='footer__link' href='https://github.com/bjelkier' target='_blank' rel="noreferrer">Github</a></li>
           </ul>
         </div>
       </div>

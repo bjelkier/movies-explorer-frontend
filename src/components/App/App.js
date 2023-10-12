@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import React from 'react';
+import { Route, Routes, useLocation } from 'react-router-dom';
 import Header from '../Header/Header.js';
 import CurrentUserContext from '../../contexts/CurrentUserContext.js';
 import Main from '../Main/Main.js';
@@ -13,12 +13,32 @@ import NotFound from '../NotFound/NotFound.js';
 import './App.css';
 
 function App() {
-  const [currentUser, setCurrentUser] = useState({});
+  const [currentUser, setCurrentUser] = React.useState({});
+  const location = useLocation();
+  const [visibleHeader, setVisibleHeader] = React.useState(false);
+  const [visibleFooter, setVisibleFooter] = React.useState(false);
+
+  React.useEffect(() => {
+    if (
+      location.pathname === "/" ||
+      location.pathname === "/movies" ||
+      location.pathname === "/saved-movies"
+    ) {
+      setVisibleHeader(true);
+      setVisibleFooter(true);
+    } else if (location.pathname === "/profile") {
+      setVisibleHeader(true);
+      setVisibleFooter(false);
+    } else {
+      setVisibleHeader(false);
+      setVisibleFooter(false);
+    }
+  }, [location, visibleHeader]);
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className='root'>
-        <Header />
+        {visibleHeader && <Header />}
         <Routes>
           <Route path='/' element={<Main />} />
           <Route path='/signup' element={<Register />} />
@@ -28,7 +48,7 @@ function App() {
           <Route path='/saved-movies' element={<SavedMovies />} />
           <Route path='*' element={<NotFound />} />
         </Routes>
-        <Footer />
+        {visibleFooter && <Footer />}
       </div>
     </CurrentUserContext.Provider>
   )

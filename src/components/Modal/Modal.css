@@ -67,14 +67,15 @@
   font-weight: 500;
   line-height: normal;
   border: none;
-  margin-top: auto;
   cursor: pointer;
   transition: opacity .3s ease;
-  align-self: flex-end;
+  margin: 127px 0 16px;
+  border-radius: 3px;
 }
 
 .modal__button:hover {
   opacity: .8;
+  cursor: pointer;
 }
 
 .modal__button_disabled {
@@ -83,13 +84,21 @@
   cursor: default;
 }
 
+.modal_button_type_login {
+  margin: 200px 0 16px;
+}
+
 .modal__span {
   text-align: center;
-  margin: 16px 0 70px;
+  margin: 9.5px 0 70px;
   font-size: 14px;
   font-weight: 400;
   line-height: normal;
   transition: opacity .3s ease;
+}
+
+.modal__span_type_login {
+  margin: -3px 0 70px;
 }
 
 .modal__link {
@@ -103,6 +112,7 @@
 
 .modal__link:hover {
   opacity: .8;
+  cursor: pointer;
 }
 
 .modal__error {
@@ -121,6 +131,7 @@
     justify-content: center;
     width: 396px;
     height: 700px;
+    margin-top: 150px;
   }
 
   .modal__button {
@@ -137,6 +148,7 @@
     padding: 0 30px;
     height: 100%;
     justify-content: flex-start;
+    margin-top: 3px;
   }
 
   .modal__logo {
@@ -150,10 +162,14 @@
   }
 
   .modal__button {
-    margin-top: auto;
+    margin: 215px 0 14px;
     font-size: 12px;
     font-weight: 500;
     line-height: normal;
+  }
+
+  .modal_button_type_login {
+    margin: 280px 0 16px;
   }
 
   .modal__form {
@@ -161,7 +177,7 @@
   }
 
   .modal__span {
-    margin: 16px 0 30px;
+    margin: 0 0 30px;
     font-size: 12px;
     font-weight: 400;
     line-height: normal;

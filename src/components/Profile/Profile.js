@@ -1,13 +1,14 @@
 import './Profile.css';
-import { useContext } from 'react';
+import React from 'react';
 import { NavLink } from 'react-router-dom';
 import CurrentUserContext from '../../contexts/CurrentUserContext.js';
 
 function Profile() {
-  const currentUserContext = useContext(CurrentUserContext);
+  const currentUserContext = React.useContext(CurrentUserContext);
+
   return (
     <main className='profile'>
-      <form className='profile__form'>
+      <section className='profile__form'>
         <h1 className='profile__title'>Привет, {currentUserContext.name}!</h1>
         <label className='profile__label' htmlFor='name'>
           Имя
@@ -19,10 +20,10 @@ function Profile() {
         </label>
         <div className='profile__links'>
           <button className='profile__link profile__link_type_edit' type='button'>Редактировать</button>
-          <NavLink className='profile__link profile__link_type_exit' to='/signout'>Выйти из аккаунта</NavLink>
+          <NavLink className='profile__link profile__link_type_exit' to='/'>Выйти из аккаунта</NavLink>
         </div>
-      </form>
-    </main>
+      </section>
+    </main >
   )
 };
 
