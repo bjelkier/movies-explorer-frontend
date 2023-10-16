@@ -74,8 +74,7 @@ function Profile({ onExit, onSubmit, profileErrorMessage }) {
           ) : (
             <div className='profile__links'>
               <button className='profile__link profile__link_type_edit' type='button' onClick={handleEditSwitch}>Редактировать</button>
-              <NavLink className='profile__link profile__link_type_exit' type='button'
-                onClick={handleExit}>Выйти из аккаунта</NavLink>
+              <NavLink className='profile__link profile__link_type_exit' type='button' to="/" onClick={handleExit}>Выйти из аккаунта</NavLink>
             </div>
           )
         }

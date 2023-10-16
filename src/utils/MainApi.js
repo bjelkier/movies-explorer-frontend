@@ -1,8 +1,11 @@
 class Api {
+  jwt;
+
   constructor() {
     this._baseUrl = 'https://api.albinamakarova.nomoredomainsrocks.ru';
     this._headers = {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      // "Cookie": "jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTJiZjJhZmZhYjRkODQwNDUyNmI4ZjAiLCJpYXQiOjE2OTczODA0NTUsImV4cCI6MTY5Nzk4NTI1NX0.Dr8laEY2XIplFhG98h0qHs82J2hsIJS7FsVzDZ3JxLI"
     }
   };
 
@@ -39,8 +42,7 @@ class Api {
     return fetch(`${this._baseUrl}/movies`, {
       headers: this._headers,
       credentials: 'include',
-    })
-      .then(this._checkResponse);
+    }).then(this._checkResponse);
   };
 
   postMovie(country,
@@ -89,25 +91,28 @@ class Api {
       method: 'POST',
       headers: this._headers,
       body: JSON.stringify({
-        password: password,
-        email: email,
         name: name,
+        email: email,
+        password: password,
       })
     })
       .then(this._checkResponse);
   }
 
-  login(email, password) {
-    return fetch(`${this._baseUrl}/signin`, {
+  async login(email, password) {
+    const response = await fetch(`${this._baseUrl}/signin`, {
       method: 'POST',
       headers: this._headers,
       credentials: 'include',
       body: JSON.stringify({
-        password: password,
         email: email,
+        password: password,
       })
-    })
-      .then(this._checkResponse);
+    }).then(this._checkResponse);
+
+    if (response != null) {
+      document.cookie = `jwt=${response.jwt}; Path=/;SameSite=none`;
+    }
   }
 
   logout() {
@@ -120,6 +125,7 @@ class Api {
 
   checkAuth() {
     return fetch(`${this._baseUrl}/users/me`, {
+      headers: this._headers,
       credentials: 'include',
       method: 'GET',
     })

@@ -10,9 +10,9 @@ import Movies from '../Movies/Movies.js';
 import Footer from '../Footer/Footer';
 import SavedMovies from '../SavedMovies/SavedMovies.js';
 import NotFound from '../NotFound/NotFound.js';
-import ProtectedRoute from '../ProtectedRoute/ProtectedRoute.js'
+import ProtectedRouteElement from '../ProtectedRoute/ProtectedRoute.js'
 import './App.css';
-import api from '../../utils/MainApi';
+import api from '../../utils/MainApi.js';
 
 function App() {
   const [currentUser, setCurrentUser] = React.useState({});
@@ -59,7 +59,13 @@ function App() {
   const handleGetSavedMovies = () => {
     api.getMovies()
       .then((res) => {
-        setSavedMovies(res)
+        const movies = res.map(m => ({
+          ...m,
+          id: m.movieId,
+          image: { url: m.image },
+          _id: m._id
+        }));
+        setSavedMovies(movies)
       })
       .catch((err) => {
         console.log(err)
@@ -103,6 +109,63 @@ function App() {
       })
   }
 
+  const handleExit = () => {
+    api.logout()
+      .then(() => {
+        navigate('/', { replace: true });
+        setLoggedIn(false);
+        setAuthCheckComplete(false);
+        localStorage.clear();
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
+
+  const handleEditUserInfo = (value) => {
+    api.updateUserInfo(value.name, value.email)
+      .then((res) => {
+        setCurrentUser(res);
+        setProfileErrorMessage('Успешно!');
+      })
+      .catch((err) => {
+        setProfileErrorMessage(err);
+      })
+  }
+
+  const handleLike = (cardInfo, isLiked, savedCard) => {
+    if (isLiked) {
+      handleDelete(savedCard);
+    } else {
+      api.postMovie(
+        cardInfo.country,
+        cardInfo.director,
+        cardInfo.duration,
+        cardInfo.year,
+        cardInfo.description,
+        `https://api.nomoreparties.co${cardInfo.image.url}`,
+        cardInfo.trailerLink,
+        `https://api.nomoreparties.co${cardInfo.image.formats.thumbnail.url}`,
+        cardInfo.id,
+        cardInfo.nameRU,
+        cardInfo.nameEN,
+      )
+        .then((res) => {
+          handleGetSavedMovies();
+        })
+    }
+  }
+
+  const handleDelete = (cardInfo) => {
+    api.deleteMovie(cardInfo._id)
+      .then((res) => {
+        handleGetSavedMovies();
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  }
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className='root'>
@@ -110,21 +173,17 @@ function App() {
         <Routes>
           {authCheckComplete &&
             <>
-              <Route path='/profile' element={<ProtectedRoute element={<Profile />} loggedIn={loggedIn} />} />
-              <Route path='/movies' element={<ProtectedRoute element={<Movies />} loggedIn={loggedIn} />} />
-              <Route path='/saved-movies' element={<ProtectedRoute element={<SavedMovies />} />} />
+              <Route path='/profile' element={<ProtectedRouteElement element={Profile} onExit={handleExit} loggedIn={loggedIn} onSubmit={handleEditUserInfo} profileErrorMessage={profileErrorMessage} />} />
+              <Route path='/movies' element={<ProtectedRouteElement element={Movies} loggedIn={loggedIn} savedMovies={savedMovies} onLike={handleLike} onDelete={handleDelete} />} />
+              <Route path='/saved-movies' element={<ProtectedRouteElement element={Movies} loggedIn={loggedIn} savedMovies={savedMovies} onLike={handleLike} onDelete={handleDelete} />} />
             </>
           }
           <Route path='/' element={<Main loggedIn={loggedIn} />} />
-          <Route path='/signup' element={<Register onSubmit={handleRegister}
-            rigiserErrorMessage={registerErrorMessage}
-            loggedIn={loggedIn} />} />
-          <Route path='/signin' element={<Login onSubmit={handleLogin}
-            loginErrorMessage={loginErrorMessage}
-            loggedIn={loggedIn} />} />
+          <Route path='/signup' element={<Register onSubmit={handleRegister} registerErrorMessage={registerErrorMessage} loggedIn={loggedIn} />} />
+          <Route path='/signin' element={<Login onSubmit={handleLogin} loginErrorMessage={loginErrorMessage} loggedIn={loggedIn} />} />
           <Route path='*' element={<NotFound loggedIn={loggedIn} />} />
         </Routes>
-        {visibleFooter && <Footer />}
+        {visibleFooter && Footer()}
       </div>
     </CurrentUserContext.Provider>
   )

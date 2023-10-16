@@ -1,35 +1,75 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './MoviesCardList.css';
 import MoviesCard from '../MoviesCard/MoviesCard.js';
-import movies from '../../utils/films.js';
 
-function MoviesCardList() {
+function MoviesCardList({ searchMovies, message, onLike, savedMovies, activePreloader }) {
+  const [moviesQuantity, setMoviesQuantity] = useState();
+  const [displayedFilms, setDisplayedFilms] = useState([]);
+  const [moreMoviesQuantity, setMoreMoviesQuantity] = useState(0);
+  const [isButtonMoreActive, setIsButtonMoreActive] = useState(false);
 
-  const [cardsCounter, setCardsCounter] = useState(16);
-  const [cards, setCards] = useState(movies.slice(0, cardsCounter))
-
-  function more() {
-    let counter = cardsCounter;
-    counter += 16;
-    setCardsCounter(counter);
-    setCards(movies.slice(0, counter))
+  const handleResize = () => {
+    if (window.innerWidth <= 500) {
+      setMoviesQuantity(5);
+      setMoreMoviesQuantity(2);
+    } else if (window.innerWidth > 500 && window.innerWidth <= 900) {
+      setMoviesQuantity(8);
+      setMoreMoviesQuantity(2);
+    } else {
+      setMoviesQuantity(16);
+      setMoreMoviesQuantity(4);
+    };
   }
+
+  const handleClickButtonMore = () => {
+    setMoviesQuantity(moviesQuantity + moreMoviesQuantity)
+  }
+
+  const handleDisplayButtonMore = () => {
+    if (searchMovies.length > moviesQuantity) {
+      setIsButtonMoreActive(true)
+    } else {
+      setIsButtonMoreActive(false)
+    }
+  }
+
+  useEffect(() => {
+    window.addEventListener('resize', handleResize);
+    setDisplayedFilms(searchMovies.slice(0, moviesQuantity));
+    handleDisplayButtonMore();
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    }
+  }, [moviesQuantity])
+
+  useEffect(() => {
+    handleResize();
+  }, [activePreloader]);
+
+  useEffect(() => {
+    setDisplayedFilms(searchMovies.slice(0, moviesQuantity));
+    handleDisplayButtonMore();
+  }, [searchMovies]);
 
   return (
     <section className='cards'>
+      {message && <p className='cards__message'>{message}</p>}
       <ul className='cards__container'>
-        {cards.map(({ id, nameRU, duration, image }) => (
+        {displayedFilms.map((cardInfo) => (
           <MoviesCard
-            key={id}
-            cardTitle={nameRU}
-            cardDuration={duration}
-            cardImage={`https://api.nomoreparties.co/${image.url}`}
-            isSavedMovies={false}
+            cardInfo={cardInfo}
+            key={cardInfo.id}
+            onLike={onLike}
+            isSavedMovies={savedMovies.some(f => f.id === cardInfo.id)}
+            savedMovies={savedMovies}
+            image={`https://api.nomoreparties.co${cardInfo.image?.url}`}
           />
         ))
         }
       </ul>
-      <button className='cards__button' onClick={more} type='button'>Ещё</button>
+      {isButtonMoreActive && (
+        <button className='cards__button' onClick={handleClickButtonMore}>Ещё</button>
+      )}
     </section>
   )
 }

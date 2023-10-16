@@ -3,7 +3,6 @@ import logo from '../../images/header-logo.svg';
 import { Link, useLocation } from 'react-router-dom';
 import React from 'react';
 import useValuesValidation from '../../utils/useValuesValidation';
-import { isEmail } from 'validator';
 
 function Modal({ onSubmit, title, buttonText, inscription, linkName, linkTo, isRegister, errorMessage }) {
   const path = useLocation().pathname;
@@ -37,7 +36,7 @@ function Modal({ onSubmit, title, buttonText, inscription, linkName, linkTo, isR
           name='email' type='email' id='email' required />
         {errors.email && <span className='modal__error'>{errors.email || ''}</span>}
         <label className='modal__label' htmlFor='password'>Пароль</label>
-        <input className={`modal__input modal__input_value_password ${errors.password && 'modal__input_error'}`} placeholder='Пароль'
+        <input className={`modal__input modal__input_value_password ${errors.password && 'modal__input_error'}`} placeholder='Введите пароль'
           onChange={handleChange} value={values.password || ''}
           name='password' type='password' id='password' minLength='6' required />
         {errors.password && <span className='modal__error'>{errors.password || ''}</span>}
