@@ -10,4 +10,6 @@
 
 Ссылка на бекенд - https://api.albinamakarova.nomoredomainsrocks.ru
 
+Ссылка на фронтенд - https://albinamakarova.nomoredomainsrocks.ru
+
 Ссылка на Pullrequest - https://github.com/bjelkier/movies-explorer-frontend/pull/2

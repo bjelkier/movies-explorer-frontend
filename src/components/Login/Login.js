@@ -1,6 +1,5 @@
 import Modal from '../Modal/Modal';
 import './Login.css';
-import api from '../../utils/MainApi';
 import React from 'react';
 import { Navigate } from 'react-router-dom';
 
