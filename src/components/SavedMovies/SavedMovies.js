@@ -1,10 +1,9 @@
 import '../MoviesCardList/MoviesCardList.css';
 import React from 'react';
 import MoviesCard from '../MoviesCard/MoviesCard.js';
-import SearchForm from '../SearchForm/SearchForm';
 
 function SavedMovies({ savedMovies, onDelete }) {
-return (
+  return (
     <main className='saved-movies'>
       <section className='cards'>
         <ul className='cards__container'>

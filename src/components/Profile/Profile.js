@@ -67,7 +67,7 @@ function Profile({ onExit, onSubmit, profileErrorMessage }) {
           isEdited ? (
             <div className='profile__links'>
               <span className='profile__error'>{errorMessage}</span>
-              <button className={`profile__link profile__link_type_submit ${!buttonDisabled && 'profile__button_disabled'}`}
+              <button className={`profile__link profile__link_type_submit ${!buttonDisabled && 'profile__link_disabled'}`}
                 disabled={!buttonDisabled} type='submit'>Сохранить</button>
             </div>
 

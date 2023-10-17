@@ -8,7 +8,6 @@ import Login from '../Login/Login.js';
 import Profile from '../Profile/Profile.js';
 import Movies from '../Movies/Movies.js';
 import Footer from '../Footer/Footer';
-import SavedMovies from '../SavedMovies/SavedMovies.js';
 import NotFound from '../NotFound/NotFound.js';
 import ProtectedRouteElement from '../ProtectedRoute/ProtectedRoute.js'
 import './App.css';
@@ -123,7 +122,7 @@ function App() {
   }
 
   const handleEditUserInfo = (value) => {
-    api.updateUserInfo(value.name, value.email)
+    api.updateUser(value.name, value.email)
       .then((res) => {
         setCurrentUser(res);
         setProfileErrorMessage('Успешно!');
