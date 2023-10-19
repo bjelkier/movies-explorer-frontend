@@ -3,27 +3,75 @@ import './SearchForm.css';
 import search from '../../images/search.svg';
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox.js';
 
-function SearchForm() {
+function SearchForm({ onSubmit, searchText, inputShortMoviesValue }) {
+
+  const [placeholder, setPlaceholder] = React.useState('Фильм');
+  const [movievalue, setmovieValue] = React.useState(searchText);
+  const [searchShortsMovies, setSearchShortsMovies] = React.useState(inputShortMoviesValue);
+  const [validationError, setValidationError] = React.useState("");
 
   const searchRef = React.useRef();
+
+  React.useEffect(() => {
+    setmovieValue(searchText)
+  }, [searchText])
+
+  React.useEffect(() => {
+    handleSubmit();
+  }, [searchShortsMovies])
 
   const handleFocus = (evt) => {
     searchRef.current.focus();
   }
 
-  const [placeholder, setPlaceholder] = React.useState('Фильм');
+  const handleMovieChange = (evt) => {
+    setmovieValue(evt.target.value)
+  }
+
+  const handleSubmit = (evt) => {
+    evt?.preventDefault();
+    if (searchRef.current.value) {
+      onSubmit(movievalue, searchShortsMovies);
+    } else {
+      setPlaceholder('Нужно ввести ключевое слово');
+    }
+  }
+
+  const handleShortsInput = (value) => {
+    setSearchShortsMovies(value)
+  }
+
+  const handleSearch = (evt) => {
+    evt.preventDefault();
+    if (movievalue === "") {
+      setValidationError("Поле не может быть пустым");
+      return;
+    } else {
+      setValidationError("");
+    }
+    handleSubmit();
+  }
 
   return (
     <section className='search'>
       <div className='search__container'>
-        <form className='search__form'>
+        <form className='search__form' onSubmit={handleSearch}>
           <div className='search__block'>
             <img className='search__icon' src={search} alt='Иконка лупы' onClick={handleFocus} />
-            <input className='search__input' name='search' placeholder={placeholder} ref={searchRef} required ></input>
+            <input 
+              className='search__input' 
+              name='search' 
+              placeholder={placeholder} 
+              ref={searchRef} 
+              onChange={handleMovieChange} 
+              value={movievalue}/>
             <button className='search__button' type='submit'>Найти</button>
           </div>
-          <FilterCheckbox />
+          <FilterCheckbox
+            searchShortMovies={handleShortsInput}
+            positionCheckbox={inputShortMoviesValue} />
         </form>
+        {validationError && <label>{validationError}</label>}
       </div>
     </section>
   )

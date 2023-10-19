@@ -3,11 +3,10 @@ import React from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import accountIcon from '../../images/account.svg';
 
-function Navigation() {
+function Navigation({ loggedIn }) {
 
   const [openMenu, setOpenMenu] = React.useState(false);
   const path = useLocation().pathname;
-  const [loggedIn] = React.useState(true);
 
   function handlerSwitchMenu() {
     if (window.innerWidth <= 770) {

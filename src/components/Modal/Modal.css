@@ -54,8 +54,25 @@
   line-height: normal;
 }
 
+.modal__input_error {
+  border-bottom: 1px solid #EE3465;
+  margin-bottom: 0;
+}
+
 .modal__input:focus {
   outline: 1px solid #4285F4;
+}
+
+.modal__input_value_password {
+  color: #FFFFFF;
+}
+
+.modal__error {
+  color: #EE3465;
+  font-size: 10px;
+  font-weight: 400;
+  line-height: normal;
+  margin: 5px 0;
 }
 
 .modal__button {
@@ -84,6 +101,10 @@
   cursor: default;
 }
 
+.modal__button_disabled:hover {
+  opacity: 1;
+}
+
 .modal_button_type_login {
   margin: 200px 0 16px;
 }
@@ -95,6 +116,10 @@
   font-weight: 400;
   line-height: normal;
   transition: opacity .3s ease;
+}
+
+.modal__span:hover {
+  opacity: .8;
 }
 
 .modal__span_type_login {
@@ -116,6 +141,15 @@
 }
 
 .modal__error {
+  margin-top: auto;
+  color: #EE3465;
+  font-size: 10px;
+  font-weight: 400;
+  line-height: normal;
+  text-align: center;
+}
+
+.modal__server-error {
   margin-top: auto;
   color: #EE3465;
   font-size: 10px;
