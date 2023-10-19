@@ -20,6 +20,7 @@ function Movies({ loggedIn, savedMovies, onLike, onDelete }) {
   const path = useLocation().pathname;
 
   React.useEffect(() => {
+    setFilteredSavedMovies(filterMovies(savedMovies, searchText, inputShortMoviesValue));
     const historyRequest = JSON.parse(localStorage.getItem('search'));
     if (historyRequest && path === '/movies') {
       setSearchMovies(historyRequest['search-result']);
@@ -39,15 +40,15 @@ function Movies({ loggedIn, savedMovies, onLike, onDelete }) {
 
 
   const handleSearchMovies = (keywords, searchShortsMovies) => {
-    
+    setActivePreloader(true);
     setSearchText(keywords);
     setInputShortMoviesValue(searchShortsMovies);
 
     setMessage('');
     if (path === '/saved-movies') {
       setFilteredSavedMovies(
-         filterMovies(savedMovies, keywords, searchShortsMovies)
-       )
+        filterMovies(savedMovies, keywords, searchShortsMovies)
+      )
       setActivePreloader(false);
     } else {
       if (JSON.parse(localStorage.getItem('movies'))) {
