@@ -1,5 +1,8 @@
 function filterMovies(moviesList, keywords, isShortMovies) {
   const filteredArray = moviesList.filter((item) => {
+    if (item === '')
+      return {};
+
     if (isShortMovies) {
       return item.duration <= 40 &&
         (item['nameRU'].toLowerCase().includes(keywords.toLowerCase()) ||

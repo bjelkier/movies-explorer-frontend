@@ -60,6 +60,17 @@
   line-height: normal;
 }
 
+
+@media (hover: hover) {
+  .card__delete {
+    visibility: hidden;
+  }
+
+  .card:hover .card__delete {
+    visibility: visible;
+  } 
+}
+
 .card__delete {
   padding: 0;
   min-width: 24px;

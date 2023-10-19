@@ -124,7 +124,7 @@ function App() {
   const handleEditUserInfo = (value) => {
     api.updateUser(value.name, value.email)
       .then((res) => {
-        setCurrentUser(res);
+        setCurrentUser(res.data);
         setProfileErrorMessage('Успешно!');
       })
       .catch((err) => {

@@ -49,7 +49,7 @@ function MoviesCard({ cardInfo, onLike, isSavedMovies, image, savedMovies, onDel
       <div className='card__info'>
         <h2 className='card__title'> {cardInfo.nameRU} </h2>
         {isSavedMovies && isSavedRoute ? (
-          isHovered && <button className='card__delete' type='button' onClick={handleDelete}></button>
+           <button className='card__delete' type='button' onClick={handleDelete}></button>
         ) : (
           shouldDisplayLikeButton && <button className={`card__like ${isLiked && 'card__like_active'}`} onClick={handleLike} type='button'></button>
         )}

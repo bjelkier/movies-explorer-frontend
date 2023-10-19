@@ -3,26 +3,30 @@ import './MoviesCardList.css';
 import MoviesCard from '../MoviesCard/MoviesCard.js';
 
 function MoviesCardList({ searchMovies, message, onLike, savedMovies, activePreloader }) {
-  const [moviesQuantity, setMoviesQuantity] = useState();
+
+  
   const [displayedFilms, setDisplayedFilms] = useState([]);
-  const [moreMoviesQuantity, setMoreMoviesQuantity] = useState(0);
+  const [moviesQuantity, setMoviesQuantity] = useState(16); //Сколько сейчас отображается фильмов
+  const [moviesCols, setMoviesCols] = useState(4);
+  const [moviesRows, setMoviesRows] = useState(3);
+  const [moviesAddCount, setMoviesAddCount] = useState(4);
   const [isButtonMoreActive, setIsButtonMoreActive] = useState(false);
 
   const handleResize = () => {
-    if (window.innerWidth <= 500) {
-      setMoviesQuantity(5);
-      setMoreMoviesQuantity(2);
-    } else if (window.innerWidth > 500 && window.innerWidth <= 900) {
-      setMoviesQuantity(8);
-      setMoreMoviesQuantity(2);
-    } else {
-      setMoviesQuantity(16);
-      setMoreMoviesQuantity(4);
-    };
+    if (window.innerWidth <= 786) setGrid(1,5,2);
+    else if (window.innerWidth <= 1007) setGrid(2,4,2);
+    else if (window.innerWidth <= 1297) setGrid(3,4,3);
+    else setGrid(4,4,4);
+  }
+
+  const setGrid = (cols, rows, addCount) => {
+    setMoviesCols(cols);
+    setMoviesRows(rows);
+    setMoviesAddCount(addCount);
   }
 
   const handleClickButtonMore = () => {
-    setMoviesQuantity(moviesQuantity + moreMoviesQuantity)
+    setMoviesQuantity(moviesQuantity + moviesAddCount);
   }
 
   const handleDisplayButtonMore = () => {
@@ -33,21 +37,28 @@ function MoviesCardList({ searchMovies, message, onLike, savedMovies, activePrel
     }
   }
 
+
   useEffect(() => {
+
     window.addEventListener('resize', handleResize);
-    setDisplayedFilms(searchMovies.slice(0, moviesQuantity));
+
+    var quantity = moviesQuantity >= searchMovies.length ? searchMovies.length :  Math.floor(moviesQuantity / moviesCols) * moviesCols;
+
+    setDisplayedFilms(searchMovies.slice(0, quantity));
     handleDisplayButtonMore();
     return () => {
       window.removeEventListener('resize', handleResize);
     }
-  }, [moviesQuantity])
+  }, [moviesQuantity, moviesCols, moviesRows])
 
   useEffect(() => {
     handleResize();
   }, [activePreloader]);
 
   useEffect(() => {
-    setDisplayedFilms(searchMovies.slice(0, moviesQuantity));
+    var quantity = moviesCols * moviesRows;
+    setMoviesQuantity(quantity);
+    setDisplayedFilms(searchMovies.slice(0, quantity));
     handleDisplayButtonMore();
   }, [searchMovies]);
 
